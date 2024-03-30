@@ -2,11 +2,9 @@ export async function genMessageFromData(data = []) {
   if (data.length == 0) return null;
   await messageToTelegram(`Scanned at ${new Date().toString().slice(0, 25)}\n`);
   data.forEach(async (el, i) => {
-    if (el.title.toLowerCase().includes("rentables")) {
       let m = `${el.title}\n\n`;
       m += el.coins.map((c) => rowText(c));
       await messageToTelegram(m.replaceAll(",", ""));
-    }
   });
 }
 const rowText = (c) => {
